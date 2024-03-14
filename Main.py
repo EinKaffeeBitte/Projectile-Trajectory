@@ -7,7 +7,12 @@ import os
 
 # Ask angle
 angle = input('Enter the angle in degrees: ')
-angle = float(angle)
+try:
+    angle = int(angle)
+except:
+    print("For now Angle must be int. Enter to exit.")
+    input()
+    exit()
 # Convert angle to radians
 theta = np.radians(angle)
 # Ask initial velocity
@@ -39,8 +44,8 @@ delta_t = input()
 delta_t = float(delta_t)
 
 # Ask initial positions
-x0 = input('Enter the initial x position: ')
-y0 = input('Enter the initial y position: ')
+x0 = int(input('Enter the initial x position: '))
+y0 = int(input('Enter the initial y position: '))
 
 # Ask for name
 name = input('Enter the name of the calculation. This will be the name of the log file. Character limit is 20: ')
@@ -54,9 +59,9 @@ time.sleep(1)
 list_of_positions = []
 
 # Equations
-u1 = 0
+u1 = x0
 u2 = v0x
-u3 = 0
+u3 = y0
 u4 = v0y
 
 # Important for finding approximated time to highest point
@@ -99,7 +104,7 @@ def log(type, log):
 
 while True:
 
-    u1dot = 0
+    u1dot = u2
     u2dot = - (k/m) * np.sqrt(u2**2 + u4**2)*u2 * np.cos(theta)
     u3dot = u4
     u4dot = - (k/m) * np.sqrt(u2**2 + u4**2)*u4 * np.sin(theta) - g
